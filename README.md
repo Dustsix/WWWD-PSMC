@@ -14,11 +14,11 @@ The 10x Genomics Chromium platform allows for whole genome production using link
 
 Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source. A key feature of Supernova is that it creates diploid assemblies, thus separately representing maternal and paternal chromosomes over very long distances. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
 
-#### supernova mkfastq 
+#### STEP 1: supernova mkfastq 
 
 Wraps Illumina's bcl2fastq to correctly demultiplex Chromium-prepared sequencing samples and to convert barcode and read data to FASTQ files.
 
-#### supernova run 
+#### STEP 2: supernova run 
 
 Takes FASTQ files containing barcoded reads from supernova mkfastq and builds a graph-based assembly.
 
@@ -35,7 +35,7 @@ example:
 
 ```
 
-#### supernova mkoutput
+#### STEP 3: supernova mkoutput
 
 Command to generate a FASTA file representing your assembly.
 
