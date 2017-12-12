@@ -1,6 +1,6 @@
 # White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) 
 
-For Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
+For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
 
 ## *PART ONE*
 
@@ -10,7 +10,7 @@ The 10x Genomics Chromium platform allows for whole genome production using link
 
 ### De Novo Assembly Software
 
-Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source. A key feature of Supernova is that it creates diploid assemblies, thus separately representing maternal and paternal chromosomes over very long distances. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
+Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source (in this case WWWD number 510). An important feature of Supernova is that it creates diploid assemblies, which represent maternal and paternal chromosomes. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
 
 #### STEP 1: supernova mkfastq 
 
