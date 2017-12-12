@@ -1,8 +1,9 @@
-# WWWD-PSMC
-Fall Practical Computing BIOL 6220
-# Project Title
+# WWWD-PSMC Project/Fall Practical Computing BIOL 6220
+The 10x Genomics Chromium platform allows for whole genome production using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. For this project, we use 10x data from a White-winged Wood Duck to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
+ 
+Overview of De Novo Assembly Software
 
-One Paragraph of project description goes here
+Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source. A key feature of Supernova is that it creates diploid assemblies, thus separately representing maternal and paternal chromosomes over very long distances. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
 
 ## Getting Started
 
