@@ -116,14 +116,7 @@ example:
  
  ### Program psmc
  
- Program `psmc' infers the population size history. In particular, the `-p'
-option specifies that there are 64 atomic time intervals and 28 (=1+25+1+1)
-free interval parameters. The first parameter spans the first 4 atomic time
-intervals, each of the next 25 parameters spans 2 intervals, the 27th spans 4
-intervals and the last parameter spans the last 6 time intervals. The `-p' and
-`-t' options are manually chosen such that after 20 rounds of iterations, at
-least ~10 recombinations are inferred to occur in the intervals each parameter
-spans.
+ Program `psmc' infers the population size history. In particular, the `-p' option specifies that there are 64 atomic time intervals and 28 (=1+25+1+1) free interval parameters. The first parameter spans the first 4 atomic time intervals, each of the next 25 parameters spans 2 intervals, the 27th spans 4 intervals and the last parameter spans the last 6 time intervals. The `-p' and `-t' options are manually chosen such that after 20 rounds of iterations, at least ~10 recombinations are inferred to occur in the intervals each parameter spans.
 
 ## Sources
 
