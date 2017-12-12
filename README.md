@@ -4,7 +4,7 @@
 
 For this project, we use 10x data from a White-winged Wood Duck to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
 
-**## 10x Genomics Chromium **
+## __10x Genomics Chromium__
 
 The 10x Genomics Chromium platform allows for whole genome production using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. 
 
