@@ -4,17 +4,17 @@ For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data
 
 ## *PART ONE*
 
-## 10x Genomics Chromium
+## 10x Genomics 
 
-The 10x Genomics Chromium produces a whole genome using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. 
+For this project, sample prep, library prep, instrument (Chromium), and sequencing (Illumina HiSeq X) was performed by 10x Genomics. The 10x Genomics Chromium platform produces a whole genome using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. This platform has the potential to provide valuable insight for conservation genetics that require comparison between areas with high polymorphisms.
+ 
 
 ### De Novo Assembly Software
-
-Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source (in this case WWWD number 510). An important feature of Supernova is that it creates diploid assemblies, which represent maternal and paternal chromosomes. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
+Data produced from sequencing is assembled with Supernova, a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source (in this case WWWD number 510). An important feature of Supernova is that it creates diploid assemblies, which represent maternal and paternal chromosomes, any differences in sequence are due to variants between the the maternal and paternal alleles. Other techniques can merge homologous chromosomes into single incorrect consensus sequence. The Supernova software package includes two processing pipelines (STEP 1/STEP 2) and one post-processing pipline (STEP 3).
 
 #### STEP 1: supernova mkfastq 
 
-Wraps Illumina's bcl2fastq to correctly demultiplex Chromium-prepared sequencing samples and to convert barcode and read data to FASTQ files.
+Wraps Illumina's BCL file to correctly demultiplex Chromium sequencing samples and to convert data to FASTQ (FASTQ format is a text-based format for storing both a nucleotide sequence and its corresponding quality score) for downstream analysis.
 
 #### STEP 2: supernova run 
 
@@ -122,8 +122,8 @@ WWWD example:
 * [SAMTools](https://davetang.org/wiki/tiki-index.php?page=SAMTools) - SAMTools tutorial
 * [SAMTools Manual](http://www.htslib.org/doc/samtools-1.1.html) - SAMTools pipline
 * [Burrows-Wheeler Alignment Tool](http://bio-bwa.sourceforge.net/bwa.shtml) - bwa Manual Reference Pages
-* [10x Genomics](https://support.10xgenomics.com/de-novo-assembly/software/overview/welcome) - Overview of De Novo Assembly Software
-
+* [10x Genomics](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html) - Overview of De Novo Assembly Software
+* [Illumina sequencing](https://github.com/lh3/psmc) - bcl2fastq Conversion Software
 
 ## Acknowledgments
 
