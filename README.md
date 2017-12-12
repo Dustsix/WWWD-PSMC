@@ -117,8 +117,7 @@ intervals, each of the next 25 parameters spans 2 intervals, the 27th spans 4
 intervals and the last parameter spans the last 6 time intervals. The `-p' and
 `-t' options are manually chosen such that after 20 rounds of iterations, at
 least ~10 recombinations are inferred to occur in the intervals each parameter
-spans. Impropriate settings may lead to overfitting. The command line in the
-example above has been shown to be suitable for modern humans.
+spans.
 
 ## Sources
 
