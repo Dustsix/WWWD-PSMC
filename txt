@@ -1,0 +1,157 @@
+#11.7.17
+#copied 4905-CP-0004.tar.gz from external hard drive to desktop
+
+mv ~/Desktop/4905-CP-0004.tar.gz /media/SmallArseRAIDbac/WWWD
+
+# to unzip
+
+tar -xvzf 4905-CB-0004.tar.gz
+
+#after 30 seconds, action stopeed with EOF error
+#tried re downloading file from orignal source
+
+curl http://pac.hudsonalpha.org/v1/AUTH_huda/JDEkZUJUYUhHTkw/4905-CB-0004.tar.gz > 4905-CB-0004.tar.gz
+
+#then tried to unzip again
+
+tar xvzf 4905-CB-0004.tar.gz
+
+#error code: permission denied as file exists because of previous unzip attempt
+#couldnt force delete directory so used
+
+mv /media/SmallArseRAIDbac/WWWD/4905-CB-0004 /media/SmallArseRaidbac/WWWD/old_files
+
+#then tried again
+
+tar -xvzf 4905-CB-0004.tar.gz
+
+#generated three files
+
+#on 11.14.17 talked with chris
+#Talked about using trim galore to trim adaptors and running a fastqc on files
+
+#fastqc
+
+~/miniconda2/envs/agalma/opt/fastqc-0.11.5$ cd /media/SmallArseRAIDbac/WWWD/
+
+# telling where fastqc program is located
+
+ ~/miniconda2/envs/agalma/opt/fastqc-0.11.5/fastqc ./4905-CB-0004_S1_L001_R1_001.fastq.gz 
+ 
+#telling to perform fastqc on both files
+
+# https://community.10xgenomics.com/t5/Genome-Exome-Forum/Best-practices-for-trimming-adapters-when-variant-calling/td-p/470
+# In terms of trimming, we recommend trimming the first 16+7bp of R1, and the first 1bp of R2. R1 contains the 16bp 10x barcode + 7bp of low accuracy sequence from an N-mer oligo.  The first bp of R2 empirically has about a 5x higher mismatch rate.  Given the stats you're showing, I don't expect the trimming to have a huge influence -- my guess is that you'll get the biggest win from filtering poor variants.
+
+
+trim_galore 4905-CB-0004_S1_L001_R1_001.fastq.gz 4905-CB-0004_S1_L001_R2_001.fastq.gz --clip_R1 23 --clip_R2 1 --paired
+
+# --clip_R1 23 means first 23bp, --clip_R2 1 means 1st base pair, did both files at once
+
+#No quality encoding type selected. Assuming that the data provided uses Sanger encoded Phred scores (default)
+
+#Writing report to '4905-CB-0004_S1_L001_R1_001.fastq.gz_trimming_report.txt'
+
+#SUMMARISING RUN PARAMETERS
+#==========================
+#Input filename: 4905-CB-0004_S1_L001_R1_001.fastq.gz
+#Trimming mode: paired-end
+#Trim Galore version: 0.3.8
+#Quality Phred score cutoff: 20
+#Quality encoding type selected: ASCII+33
+#Adapter sequence: 'AGATCGGAAGAGC' (Illumina TruSeq, Sanger iPCR; default)
+#Maximum trimming error rate: 0.1 (default)
+#Minimum required adapter overlap (stringency): 1 bp
+#Minimum required sequence length for both reads before a sequence pair gets removed: 20 bp
+#All Read 1 sequences will be trimmed by 23 bp from their 5' end to avoid poor qualities or biases
+#All Read 2 sequences will be trimmed by 1 bp from their 5' end to avoid poor qualities or biases (e.g. M-bias for BS-Seq applications)
+#Output file(s) will be GZIP compressed
+
+#Writing final adapter and quality trimmed output to 4905-CB-0004_S1_L001_R1_001_trimmed.fq.gz
+
+#  >>> Now performing quality (cutoff 20) and adapter trimming in a single pass for the adapter sequence: 'AGATCGGAAGAGC' from file 4905-CB-0004_S1_L001_R1_001.fastq.gz <<< 
+
+# Downloading WWWWD genome from Tim
+# To assembly the duck, I used these options: 
+# supernova run --id=${SAMPLE}_assembly --fastqs=/scratch2/tsackton/bird10x/$SPECIES/${SAMPLE}_fastq --maxreads=600000000 --localcores 36 --localmem 600
+# Tim "I output the "pseudohaploid" style, which gives you a separate sequence for each haplotype from the assembly."
+# Tim "I used the .1 file for the alignment; the .2 file is exactly parallel."
+# Tim "Any differences in sequence are due to variants between the the maternal and paternal alleles."
+# Tim " You can see more here: https://support.10xgenomics.com/de-novo-assembly/software/pipelines/latest/output/generating "
+
+curl -u ratites https://software.rc.fas.harvard.edu/ngsdata/Ratites/broodPara/WWWW.1.fasta.gz > WWWW.1.fasta.gz
+
+#password 98rati76
+
+curl -u ratites https://software.rc.fas.harvard.edu/ngsdata/Ratites/broodPara/WWWW.2.fasta.gz > WWWW.2.fasta.gz
+
+#11.16.17
+#unzip files
+
+gunzip WWWD.1.fasta.gz
+
+# bwa - Burrows-Wheeler Alignment Tool
+# bwa mem ref.fa read1.fq read2.fq > aln-pe.sam
+# -t INT	Number of threads [1] Chris said use 4
+
+bwa mem ../WWWD.1.fasta -t 4 4905-CB-0004_S1_L001_R1_001_val_1.fq.gz 4905-CB-0004_S1_L001_R2_001_val_2.fq.gz > WWWD_510.sam
+
+#Converting SAM directly to a sorted BAM file
+#Like many Unix tools, SAMTools is able to read directly from a stream i.e. stdout.
+# samtools view -bS file.sam | samtools sort - file_sorted
+# -b Output in the BAM format
+# -S Ignored for compatibility with previous samtools versions. Previously this option was required if input was in SAM format, but now the correct format is automatically detected by examining the first few characters of input.
+
+samtools view -bS WWWWD_510.sam | samtools sort - WWWWD_510_sorted
+
+#11/30/17
+# tried command above, but did not work, WWWD_510.sam was finished from last session (pre fall break)
+#talked to matt, command above wanted a -o option for output file 
+# "They just want an output name designation now to define what the output is. They used to assume .bam, not you have to tell them"
+
+samtools view -bS -@4 WWWD_510.sam | samtools sort -  -@4 -o WWWD_510_sorted.bam
+
+#left above command running at 11:31AM 11/27
+
+#from chris 
+
+samtools mpileup -C50 -uf WWWD.1.fasta ./4905-CB-0004/WWWD_510_sorted.bam | bcftools call -c - | vcfutils.pl vcf2fq -d10 -D100 | gzip > WWWD510.diploid.fq.gz & 
+
+	utils/fq2psmcfa -q20 WWWD510.diploid.fq.gz > WWWD510.diploid.psmcfa
+		utils/splitfa WWWD510.diploid.psmcfa > WWWD510.split.psmcfa
+    psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o WWWD510.diploid.psmc WWWD510.diploid.psmcfa
+		seq 100 | xargs -i echo psmc -N25 -t15 -r5 -b -p "4+25*2+4+6" \
+	  	  -o round-{}.psmc split.fa | sh
+    cat WWWD510.diploid.psmc round-*.psmc > WWWD510.combined.psmc
+		utils/psmc_plot.pl -pY50000 combined WWWD510.combined.psmc
+
+
+#look up if there is a way to combine the phased alles into a 10x genome for the samtools mpileup
+# downloand Cicso VPM ECU
+# put the whole path for fq2psmc user/local/bin/
+#look up the psmc on github
+#pedigree on kinship2 package in R, look up what to do for missing data in that package, in sample column, put affected., 
+# send chris murchanas orignal akron purposal 
+# send april grant stuff
+#check into common waxbills
+
+
+	/usr/local/bin/psmc-master/utils/fq2psmcfa -q20 WWWD510.diploid.fq > WWWD510.diploid.psmcfa
+    /usr/local/bin/psmc-master/utils/psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o WWWD510.diploid.psmc WWWD510.diploid.psmcfa
+    
+    /usr/local/bin/psmc-master/utils/psmc2history.pl WWWD510.diploid.psmc | utils/history2ms.pl > ms-cmd.sh
+    /usr/local/bin/psmc-master/utils/psmc_plot.pl diploid WWWD510.diploid.psmc
+
+cbala@balalab:/media/SmallArseRAIDbac/WWWD$ 
+
+/usr/local/bin/psmc-master/utils/fq2psmcfa -q20 WWWD510.diploid.fq.gz > WWWD510.diploid.psmcfa
+# did not work
+#tried this
+
+/usr/local/bin/psmc-master/utils/fq2psmcfa -q20 WWWD510.diploid.fq > WWWD510.diploid.psmcfa
+
+/usr/local/bin/psmc-master/utils/splitfa WWWD510.diploid.psmcfa > WWWD510.split.psmcfa
+
+
+#cat P964.chr*.fq > P964.consensus.fq
+cat WWWD510.diploid.fq.gz
