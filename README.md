@@ -69,7 +69,7 @@ example:
 WWWD example: 
  bwa mem ../WWWD.1.fasta -t 4 4905-CB-0004_S1_L001_R1_001_val_1.fq.gz 4905-CB-0004_S1_L001_R2_001_val_2.fq.gz > WWWD_510.sam
 ```
-## PART THREE: PSMC
+## *PART THREE: Pairwise Sequentially Markovian Coalescent (PSMC) Evaluation*
 
 ### SAMtools (Sequence Alignment/Map)
 
