@@ -1,8 +1,6 @@
-# Practical Computing (BIOL 6220) Final Project
-
 # White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) 
 
-For this project, we use 10x data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
+For Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
 
 ## *PART ONE*
 
