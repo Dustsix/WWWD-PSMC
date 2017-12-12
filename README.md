@@ -1,4 +1,4 @@
-# White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) Evalution
+# White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) Evaluation
 
 For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation. The Pairwise Sequentially Markovian Coalescent (PSMC) model uses information in a  diploid sequence of one individual to infer the historic population changes.
 
