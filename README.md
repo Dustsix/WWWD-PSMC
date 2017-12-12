@@ -103,8 +103,10 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [github/psmc](https://github.com/lh3/psmc) - The psmc model
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [SAMTools](https://davetang.org/wiki/tiki-index.php?page=SAMTools) - SAMTools tutorial
+* [SAMTools Manual](http://www.htslib.org/doc/samtools-1.1.html) - SAMTools pipline
+* [Burrows-Wheeler Alignment Tool](http://bio-bwa.sourceforge.net/bwa.shtml) - bwa Manual Reference Pages
+* [10x Genomics](https://support.10xgenomics.com/de-novo-assembly/software/overview/welcome) - Overview of De Novo Assembly Software
 
 ## Contributing
 
