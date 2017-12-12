@@ -5,6 +5,23 @@ Overview of De Novo Assembly Software
 
 Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source. A key feature of Supernova is that it creates diploid assemblies, thus separately representing maternal and paternal chromosomes over very long distances. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
 
+
+## 10x Genomics Chromium 
+
+The 10x Genomics Chromium platform allows for whole genome production using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. 
+
+### De Novo Assembly Software
+
+Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source. A key feature of Supernova is that it creates diploid assemblies, thus separately representing maternal and paternal chromosomes over very long distances. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
+
+#### supernova mkfastq 
+
+Wraps Illumina's bcl2fastq to correctly demultiplex Chromium-prepared sequencing samples and to convert barcode and read data to FASTQ files.
+
+#### supernova run 
+
+Takes FASTQ files containing barcoded reads from supernova mkfastq and builds a graph-based assembly. The approach is to first build an assembly using read kmers (K = 48), then resolve this assembly using read pairs (to K = 200), then use barcodes to effectively resolve this assembly to K ≈ 100,000. The final step pulls apart homologous chromosomes into phase blocks, which are typically multi-megabase for human genomes.
+
 ## Burrows-Wheeler Alignment (BWA) Tool
 
 BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome.  
