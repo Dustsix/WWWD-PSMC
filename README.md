@@ -1,4 +1,4 @@
-# White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) 
+# White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) Evalution
 
 For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
 
@@ -6,7 +6,7 @@ For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data
 
 ## 10x Genomics Chromium
 
-The 10x Genomics Chromium platform allows for whole genome production using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. 
+The 10x Genomics Chromium produces a whole genome using linked-reads, potentially providing high resolution in previously difficult to reconstruct regions of the genome. 
 
 ### De Novo Assembly Software
 
