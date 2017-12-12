@@ -15,40 +15,35 @@ BWA is a software package for mapping low-divergent sequences against a large re
 Recommended for high-quality queries as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads.
 
 ```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+example: 
+ bwa mem ref.fa read1.fq read2.fq > aln-pe.sam
+ 
+example: 
+ bwa mem ../WWWD.1.fasta -t 4 4905-CB-0004_S1_L001_R1_001_val_1.fq.gz 4905-CB-0004_S1_L001_R2_001_val_2.fq.gz > WWWD_510.sam
 
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## SAMtools (Sequence Alignment/Map)
 
-Explain how to run the automated tests for this system
+Samtools is a set of utilities that manipulate alignments in the BAM format.
 
-### Break down into end to end tests
+### SAMtools view
 
-Explain what these tests test and why
+With no options or regions specified, prints all alignments in the specified input alignment file (in SAM, BAM, or CRAM format) to standard output in SAM format (with no header).
+
+Converting SAM directly to a sorted BAM file.
 
 ```
-Give an example
+example:
+ samtools view -bS file.sam | samtools sort - file_sorted
+ 
+example:
+ samtools view -bS -@4 WWWD_510.sam | samtools sort -  -@4 -o WWWD_510_sorted.bam
+  -b Output in the BAM format
+  -S Ignore for compatibility with previous samtools versions
 ```
 
-### And coding style tests
+### SAMtools mpileup
 
 Explain what these tests test and why
 
