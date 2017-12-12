@@ -1,6 +1,6 @@
 # White-winged Wood Duck Genome Assembly and Pairwise Sequentially Markovian Coalescent (PSMC) Evalution
 
-For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation.
+For the Practical Computing (BIOL 6220) Final Project, we used 10x Genomics data from a White-winged Wood Duck (WWWD) to generate a whole genome to be used in a Pairwise Sequentially Markovian Coalescent (PSMC) evaluation. The Pairwise Sequentially Markovian Coalescent (PSMC) model uses information in a  diploid sequence of one individual to infer the historic population changes.
 
 ## *PART ONE: Producing a Genome*
 
@@ -49,15 +49,18 @@ example: --style=pseudohap
 
 ## *PART TWO: Mapping Reads to Assembled Genome*
 
-For this project, we assume the sequenced reads are low divergence between the subject (the individual WWWW number 510 sequenced) and the reference (the genome assembly to which the reads will be mapped). We are looking for genomic varition in WWWD. Small genomic variants such as SNPs (single nucleotide polymorphisms). By mapping the reads generated in STEP 2 of PART 1 to the assembled diploid genome, we can identify SNPs.
+For PSMC analysis, we needed to map reads to a reference genome. We assume our sequenced reads were low divergence between the subject (the individual reads from WWWW #510) and the reference (the WWWD genome assembly to which the reads will be mapped). 
+
+We are looking for genomic varition in WWWD. Small genomic variants such as SNPs (single nucleotide polymorphisms). By mapping the reads generated in STEP 2 of PART ONE to the assembled diploid genome, we can identify SNPs.
+
 
 ## Burrows-Wheeler Alignment (BWA) Tool
 
-BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the WWWD genome produced in PART TWO.  
+BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the WWWD genome produced in PART ONE. It consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM.
 
-### BWA-MEM
+### STEP 1: BWA-MEM
 
-Recommended for high-quality queries as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads.
+Recommended for high-quality as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads (WWWD #510: mean read length = 139.50bp).
 
 ```
 example: 
@@ -65,15 +68,13 @@ example:
  
 WWWD example: 
  bwa mem ../WWWD.1.fasta -t 4 4905-CB-0004_S1_L001_R1_001_val_1.fq.gz 4905-CB-0004_S1_L001_R2_001_val_2.fq.gz > WWWD_510.sam
-
 ```
-## *PART THREE*
 
-## SAMtools (Sequence Alignment/Map)
+### Step 2: SAMtools (Sequence Alignment/Map)
 
-Samtools is a set of utilities that manipulate alignments in the BAM format.
+Samtools is a set of utilities that manipulate alignments in the BAM format.he SAM format consists of a header and an alignment section.[1] The binary representation of a SAM file is a BAM file, which is a compressed SAM file
 
-### SAMtools view
+### Step 3: SAMtools view
 
 With no options or regions specified, prints all alignments in the specified input alignment file (in SAM, BAM, or CRAM format) to standard output in SAM format (with no header).
 
