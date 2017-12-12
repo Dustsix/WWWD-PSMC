@@ -51,7 +51,7 @@ example: --style=pseudohap
 
 For PSMC analysis, we needed to map reads to a reference genome. We assume our sequenced reads were low divergence between the subject (the individual reads from WWWW #510) and the reference (the WWWD genome assembly to which the reads will be mapped). 
 
-We are looking for genomic varition in WWWD. Small genomic variants such as SNPs (single nucleotide polymorphisms). By mapping the reads generated in STEP 2 of PART ONE to the assembled diploid genome, we can identify SNPs.
+We are looking for genomic variation  in WWWD. Small genomic variants such as SNPs (single nucleotide polymorphisms). By mapping the reads generated in STEP 2 of PART ONE to the assembled diploid genome, we can identify SNPs.
 
 
 ## Burrows-Wheeler Alignment (BWA) Tool
