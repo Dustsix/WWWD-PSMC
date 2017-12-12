@@ -5,13 +5,14 @@ Overview of De Novo Assembly Software
 
 Supernova is a software package for de novo assembly from Chromium Linked-Reads that are made from a single whole-genome library from an individual DNA source. A key feature of Supernova is that it creates diploid assemblies, thus separately representing maternal and paternal chromosomes over very long distances. Almost all other methods instead merge homologous chromosomes into single incorrect 'consensus' sequences. Supernova is the only practical method for creating diploid assemblies of large genomes.
 
-## Getting Started
+## Burrows-Wheeler Alignment (BWA) Tool
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome.  
 
-### Prerequisites
 
-What things you need to install the software and how to install them
+### BWA-MEM
+
+Recommended for high-quality queries as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads.
 
 ```
 Give examples
@@ -35,7 +36,7 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## SAMtools (Sequence Alignment/Map)
 
 Explain how to run the automated tests for this system
 
