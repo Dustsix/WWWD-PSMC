@@ -95,22 +95,22 @@ WWWD example:
 
 This uses the sorted bam file and WWWD reference genome, generates an mpileup using samtools, calls the consensus sequence with bcftools, and then filters and converts the consensus to fastq format, writing the results for each chromosome to a separate fastq file. 
 
- samtools:
-  -Q and -q in mpileup determine the cutoffs for baseQ and mapQ
-  -v tells mpileup to produce vcf output, and -u says that should be uncompressed
-  -f is the reference fasta used (needs to be indexed)
-  -r is the region to call the mpileup
-
-bcftools:
-  -c calls a consensus sequence from the mpileup using the original calling method 
-
-vcfutils.pl:
-  -d and -d determine the minimum and maximum coverage to allow for vcf2fq, anything outside that range is filtered
-  -Q sets the root mean squared mapping quality minimum
-
 ```
 example: 
  samtools mpileup -C50 -uf ref.fa aln.bam | bcftools view -c -  | vcfutils.pl vcf2fq -d 10 -D 100 | gzip > diploid.fq.gz
+ 
+ samtools:
+  --Q and -q in mpileup determine the cutoffs for baseQ and mapQ
+  --v tells mpileup to produce vcf output, and -u says that should be uncompressed
+  --f is the reference fasta used (needs to be indexed)
+  --r is the region to call the mpileup
+
+bcftools:
+  --c calls a consensus sequence from the mpileup using the original calling method 
+
+vcfutils.pl:
+  --d and -d determine the minimum and maximum coverage to allow for vcf2fq, anything outside that range is filtered
+  --Q sets the root mean squared mapping quality minimum
 
 WWWD example:
  samtools mpileup -C50 -uf WWWD.1.fasta ./4905-CB-0004/WWWD_510_sorted.bam | bcftools call -c - | vcfutils.pl vcf2fq -d10 -D100 | gzip > WWWD510.diploid.fq.gz  
